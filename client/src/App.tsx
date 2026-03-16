@@ -1,25 +1,56 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import RegistrationOrAuthorization from "./pages/RegOrAuth";
 import Header from "./components/Header";
 
 const App: React.FC = () => {
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
 
-  if (!isAuthorized) {
-    return (
-      <div className="auth-fullscreen-wrapper">
-        <RegistrationOrAuthorization onComplete={() => setIsAuthorized(true)} />
-      </div>
-    );
-  }
-
   return (
-    <div className="app-container">
-      <Header />
-      <div className="layout">
-        <h1>Hello user</h1>
-      </div>
-    </div>
+    <Router>
+      {isAuthorized && <Header />}
+
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            !isAuthorized ? (
+              <RegistrationOrAuthorization
+                onComplete={() => setIsAuthorized(true)}
+              />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            isAuthorized ? <div>Home Page</div> : <Navigate to="/login" />
+          }
+        />
+
+        <Route
+          path="/more_information"
+          element={
+            isAuthorized ? <div>Hello User</div> : <Navigate to="/login" />
+          }
+        />
+
+        <Route
+          path="/about_me"
+          element={
+            isAuthorized ? <div>About Me</div> : <Navigate to="/login" />
+          }
+        />
+
+        <Route
+          path="*"
+          element={<Navigate to={isAuthorized ? "/" : "/login"} />}
+        />
+      </Routes>
+    </Router>
   );
 };
 
