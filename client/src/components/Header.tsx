@@ -30,24 +30,24 @@ const Header: React.FC = () => {
   }, [burgerMenuState]);
 
   return (
-    <header className="header">
-      <Navbar
-        isOpen={burgerMenuState}
-        toggleMenu={toggleMenu}
-        body={navLinks}
-        menuRef={menuRef}
-        logo={
-          <div className="header__logo">
-            <img
-              src={logoIcon}
-              alt="website logo"
-              className="header__logo-img"
-            />
-            <h1 className="header__logo-title">Web Site</h1>
-          </div>
-        }
-      />
-    </header>
+      <header className="header">
+        <Navbar
+          isOpen={burgerMenuState}
+          toggleMenu={toggleMenu}
+          body={navLinks}
+          menuRef={menuRef}
+          logo={
+            <div className="header__logo">
+              <img
+                src={logoIcon}
+                alt="website logo"
+                className="header__logo-img"
+              />
+              <h1 className="header__logo-title">Web Site</h1>
+            </div>
+          }
+        />
+      </header>
   );
 };
 

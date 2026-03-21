@@ -1,0 +1,40 @@
+.greeting-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.greeting-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+  letter-spacing: -0.02em;
+  animation: slideUpFade 0.5s ease-out;
+}
+
+.greeting-text::first-letter {
+  color: var(--primary-color);
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .greeting-text {
+    font-size: 1.75rem;
+  }
+}

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import RegistrationOrAuthorization from "./pages/RegOrAuth";
 import Header from "./components/Header";
+import Home from "./pages/Home";
+
 
 const App: React.FC = () => {
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
@@ -27,7 +29,7 @@ const App: React.FC = () => {
         <Route
           path="/"
           element={
-            isAuthorized ? <div>Home Page</div> : <Navigate to="/login" />
+            isAuthorized ? <Home/> : <Navigate to="/login" />
           }
         />
 
