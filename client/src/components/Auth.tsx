@@ -1,5 +1,5 @@
 import React, { useState, type ChangeEvent, type FormEvent } from "react";
-
+import MyInput from "../ui/input/Input";
 
 interface AuthProps {
   onLoginSuccess: () => void;
@@ -10,7 +10,7 @@ interface formDates {
   password: string;
 }
 
-const Auth: React.FC<AuthProps> = ({onLoginSuccess}) => {
+const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
   const [formData, setFormData] = useState<formDates>({
     email: "",
     password: "",
@@ -64,23 +64,23 @@ const Auth: React.FC<AuthProps> = ({onLoginSuccess}) => {
       {error && <p>{error}</p>}
       <form onSubmit={handleLogin}>
         <div>
-          <label>Email:</label>
-          <input
+          <MyInput
+            label="Email:"
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
-            required
+            placeholder="please write your email"
           />
         </div>
         <div>
-          <label>Password:</label>
-          <input
+          <MyInput
+            label="Password:"
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required
+            placeholder="Enter password"
           />
         </div>
         <button type="submit">Sign In</button>

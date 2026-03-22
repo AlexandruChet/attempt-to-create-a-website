@@ -1,5 +1,5 @@
 import React, { useState, type ChangeEvent, type FormEvent } from "react";
-
+import MyInput from "../ui/input/Input";
 
 interface RegistrationFormProps {
   onRegisterSuccess: () => void;
@@ -17,7 +17,9 @@ interface Errors {
   password?: string;
 }
 
-const RegistrationForm: React.FC<RegistrationFormProps> = ({onRegisterSuccess}) => {
+const RegistrationForm: React.FC<RegistrationFormProps> = ({
+  onRegisterSuccess,
+}) => {
   const [formData, setFormData] = useState<RegistrationData>({
     username: "",
     email: "",
@@ -85,34 +87,37 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({onRegisterSuccess}) 
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username:</label>
-          <input
+          <MyInput
+            label="Username:"
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
+            placeholder="Enter your name"
+            err={errors.username}
           />
-          {errors.username && <span>{errors.username}</span>}
         </div>
         <div>
-          <label>Email:</label>
-          <input
+          <MyInput
+            label="Email: "
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
+            placeholder="Email"
+            err={errors.email}
           />
-          {errors.email && <span>{errors.email}</span>}
         </div>
         <div>
-          <label>Password:</label>
-          <input
+          <MyInput
+            label="Password: "
             type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
+            placeholder="At least 6 characters"
+            err={errors.password}
           />
-          {errors.password && <span>{errors.password}</span>}
         </div>
 
         <button type="submit">Registration</button>
