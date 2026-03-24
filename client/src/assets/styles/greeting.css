@@ -1,12 +1,14 @@
 .greeting-container {
   width: 100%;
   display: flex;
-  align-items: center;
-  padding: 2rem;
+  padding-top: 5%;
+  padding-bottom: 5%;
   background: var(--card-bg);
   border-bottom: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  align-items: center;
+  justify-content: center;
 }
 
 .greeting-text {
@@ -32,6 +34,15 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  .greeting-container {
+    margin-top: 10vh;
+    padding-top: 10%;
+    padding-bottom: 5%;
+  }
+}
+
 
 @media (max-width: 640px) {
   .greeting-text {

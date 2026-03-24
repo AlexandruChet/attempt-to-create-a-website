@@ -17,33 +17,22 @@ interface Errors {
   password?: string;
 }
 
-const RegistrationForm: React.FC<RegistrationFormProps> = ({
-  onRegisterSuccess,
-}) => {
-  const [formData, setFormData] = useState<RegistrationData>({
-    username: "",
-    email: "",
-    password: "",
-  });
+const RegistrationForm: React.FC<RegistrationFormProps> = ({ onRegisterSuccess, }) => {
+  const [formData, setFormData] = useState<RegistrationData>({ username: "", email: "", password: "",});
 
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({...formData, [name]: value,});
   };
 
   const validate = (): Errors => {
     const newErrors: Errors = {};
     if (!formData.username.trim()) newErrors.username = "Name is required";
-    if (!formData.email.includes("@"))
-      newErrors.email = "Incorrect email format";
-    if (formData.password.length < 6) newErrors.password = "Min 6 characters";
-    return newErrors;
+    if (!formData.email.includes("@")) newErrors.email = "Incorrect email format";
+    if (formData.password.length < 6) newErrors.password = "Min 6 characters"; return newErrors;
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -71,9 +60,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
           console.log(result, "is true");
           setSubmitted(true);
           onRegisterSuccess();
-        } else {
-          console.error("Error", response.statusText);
-        }
+        } else console.error("Error", response.statusText);
       } catch (err) {
         console.error("Network Error", err);
       }

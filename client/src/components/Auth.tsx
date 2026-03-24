@@ -54,9 +54,7 @@ const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
     }
   };
 
-  if (isAuthenticated) {
-    return <h1>Welcome! You are logged in.</h1>;
-  }
+  if (isAuthenticated) return <h1>Welcome! You are logged in.</h1>;
 
   return (
     <div>
