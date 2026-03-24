@@ -1,7 +1,8 @@
-import React, { useState, useMemo, type ChangeEvent } from "react";
-import MyInput from "../ui/input/Input";
-import MyBtn from "../ui/btn/Button";
-import "../assets/styles/tasks.css";
+import React, { useMemo, useState, type ChangeEvent } from "react";
+import MyBtn from "../../ui/btn-ui";
+import MyInput from "../../ui/input-ui";
+import "../../../app/styles/tasks.css";
+
 
 interface Task {
   id: number;
@@ -39,8 +40,10 @@ const Tasks: React.FC = () => {
     return [...tasks].sort((a, b) => a[sortedBy].localeCompare(b[sortedBy]));
   }, [tasks, sortedBy]);
 
-  const writeTitle = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
-  const writeDescription = (e: ChangeEvent<HTMLInputElement>) => setDescription(e.target.value);
+  const writeTitle = (e: ChangeEvent<HTMLInputElement>) =>
+    setTitle(e.target.value);
+  const writeDescription = (e: ChangeEvent<HTMLInputElement>) =>
+    setDescription(e.target.value);
 
   return (
     <div className="tasks-block">
@@ -65,14 +68,25 @@ const Tasks: React.FC = () => {
       </div>
 
       <div className="tasks-block__sorted-list">
-        <label className="tasks-block__sorted-list__label-text">Sort by: </label>
+        <label className="tasks-block__sorted-list__label-text">
+          Sort by:{" "}
+        </label>
         <select
-        className="tasks-block__sorted-list__select-block"
-          value={sortedBy} 
-          onChange={(e) => setSortedBy(e.target.value as "title" | "description")}
+          className="tasks-block__sorted-list__select-block"
+          value={sortedBy}
+          onChange={(e) =>
+            setSortedBy(e.target.value as "title" | "description")
+          }
         >
-          <option className="tasks-block__sorted-list__option" value="title">Title</option>
-          <option className="tasks-block__sorted-list__option" value="description">Description</option>
+          <option className="tasks-block__sorted-list__option" value="title">
+            Title
+          </option>
+          <option
+            className="tasks-block__sorted-list__option"
+            value="description"
+          >
+            Description
+          </option>
         </select>
       </div>
 

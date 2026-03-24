@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import RegistrationForm from "../components/RegistrationForm";
-import Auth from "../components/Auth";
+import RegistrationForm from "../../shared/ui/Reg";
+import Auth from "../../shared/ui/Auth";
 
 interface RegOrAuthProps {
   onComplete: () => void;

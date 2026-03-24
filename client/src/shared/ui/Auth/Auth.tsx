@@ -1,14 +1,17 @@
 import React, { useState, type ChangeEvent, type FormEvent } from "react";
-import MyInput from "../ui/input/Input";
+import MyInput from "../../../entities/ui/input-ui";
+
 
 interface AuthProps {
   onLoginSuccess: () => void;
 }
 
+
 interface formDates {
   email: string;
   password: string;
 }
+
 
 const Auth: React.FC<AuthProps> = ({ onLoginSuccess }) => {
   const [formData, setFormData] = useState<formDates>({

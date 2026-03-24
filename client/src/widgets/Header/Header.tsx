@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-import Navbar from "../ui/burger-menu/Navbar";
-import logoIcon from "../assets/img/logo.svg";
-import { navLinks } from "./DATES/navigation";
-import "../assets/styles/header.css";
+import React, { useEffect, useRef, useState } from "react";
+import Navbar from "../../entities/ui/burger-menu-ui";
+import logoIcon from "../../shared/img/logo.svg";
+import "../../app/styles/header.css";
+import { navLinks } from "../DATES/navigation";
+
 
 const Header: React.FC = () => {
   const [burgerMenuState, setBurgerMenuState] = useState<boolean>(false);
@@ -30,24 +31,24 @@ const Header: React.FC = () => {
   }, [burgerMenuState]);
 
   return (
-      <header className="header">
-        <Navbar
-          isOpen={burgerMenuState}
-          toggleMenu={toggleMenu}
-          body={navLinks}
-          menuRef={menuRef}
-          logo={
-            <div className="header__logo">
-              <img
-                src={logoIcon}
-                alt="website logo"
-                className="header__logo-img"
-              />
-              <h1 className="header__logo-title">Web Site</h1>
-            </div>
-          }
-        />
-      </header>
+    <header className="header">
+      <Navbar
+        isOpen={burgerMenuState}
+        toggleMenu={toggleMenu}
+        body={navLinks}
+        menuRef={menuRef}
+        logo={
+          <div className="header__logo">
+            <img
+              src={logoIcon}
+              alt="website logo"
+              className="header__logo-img"
+            />
+            <h1 className="header__logo-title">Web Site</h1>
+          </div>
+        }
+      />
+    </header>
   );
 };
 

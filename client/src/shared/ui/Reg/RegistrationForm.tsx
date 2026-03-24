@@ -1,5 +1,6 @@
 import React, { useState, type ChangeEvent, type FormEvent } from "react";
-import MyInput from "../ui/input/Input";
+import MyInput from "../../../entities/ui/input-ui";
+
 
 interface RegistrationFormProps {
   onRegisterSuccess: () => void;

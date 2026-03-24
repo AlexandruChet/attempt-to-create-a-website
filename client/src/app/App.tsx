@@ -5,10 +5,12 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import RegistrationOrAuthorization from "./pages/RegOrAuth";
-import Header from "./components/Header";
-import Home from "./pages/Home";
-import TechProjects from "./pages/Projects";
+import RegistrationOrAuthorization from "../pages/RegOrAuth";
+import Header from "../widgets/Header";
+import Home from "../pages/Home";
+import TechProjects from "../pages/Projects";
+import "./styles/index.css";
+
 
 const App: React.FC = () => {
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);

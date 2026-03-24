@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import "../assets/styles/greeting.css";
-import { greetings } from "./DATES/greetings";
+import React, { useEffect, useState } from "react";
+import "../../app/styles/greeting.css";
+import { greetings } from "../DATES/greetings";
+
 
 const GreetingTimer: React.FC = () => {
   const [index, setIndex] = useState<number>(0);
