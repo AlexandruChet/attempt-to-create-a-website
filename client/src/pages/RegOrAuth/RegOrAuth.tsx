@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import RegistrationForm from "../../shared/ui/Reg";
-import Auth from "../../shared/ui/Auth";
+import RegistrationForm from "../../features/Reg";
+import Auth from "../../features/Auth";
 
 interface RegOrAuthProps {
   onComplete: () => void;
 }
 
-const RegistrationOrAuthorization: React.FC<RegOrAuthProps> = ({ onComplete }) => {
+const RegistrationOrAuthorization: React.FC<RegOrAuthProps> = ({
+  onComplete,
+}) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const toggleAuth = () => {
@@ -14,11 +16,11 @@ const RegistrationOrAuthorization: React.FC<RegOrAuthProps> = ({ onComplete }) =
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <button onClick={toggleAuth} style={{ marginBottom: '20px' }}>
+    <div style={{ textAlign: "center" }}>
+      <button onClick={toggleAuth} style={{ marginBottom: "20px" }}>
         {isLoggedIn ? "Go to registration" : "Already have an account? Sign in"}
       </button>
-      
+
       {isLoggedIn ? (
         <Auth onLoginSuccess={onComplete} />
       ) : (

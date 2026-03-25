@@ -1,8 +1,9 @@
-import React, { useMemo, useState, type ChangeEvent } from "react";
-import MyBtn from "../../ui/btn-ui";
-import MyInput from "../../ui/input-ui";
+import React, { useState, type ChangeEvent } from "react";
 import "../../../app/styles/tasks.css";
-
+import MyBtn from "../../../shared/ui/btn-ui";
+import MyInput from "../../../shared/ui/input-ui";
+import { TaskList } from "../../ui/TaskList/TaskList";
+import { useSortLst } from "../tasks-hooks/useSortList";
 
 interface Task {
   id: number;
@@ -16,9 +17,9 @@ const Tasks: React.FC = () => {
   const [sortedBy, setSortedBy] = useState<"title" | "description">("title");
 
   const [tasks, setTasks] = useState<Task[]>([
-    { id: 1, title: "a", description: "b" },
+    { id: 1, title: "a", description: "c" },
     { id: 2, title: "b", description: "a" },
-    { id: 3, title: "c", description: "c" },
+    { id: 3, title: "c", description: "b" },
   ]);
 
   const addTask = () => {
@@ -36,9 +37,7 @@ const Tasks: React.FC = () => {
     setDescription("");
   };
 
-  const sortedTasks = useMemo(() => {
-    return [...tasks].sort((a, b) => a[sortedBy].localeCompare(b[sortedBy]));
-  }, [tasks, sortedBy]);
+  const sortedTasks = useSortLst(tasks, sortedBy);
 
   const writeTitle = (e: ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
@@ -90,14 +89,7 @@ const Tasks: React.FC = () => {
         </select>
       </div>
 
-      <div className="tasks-block__headline-main-block">
-        {sortedTasks.map((task) => (
-          <div key={task.id} className="tasks-block__headline-main-block__list">
-            <h2>{task.title}</h2>
-            <p>{task.description}</p>
-          </div>
-        ))}
-      </div>
+      <TaskList tasks={sortedTasks} />
     </div>
   );
 };

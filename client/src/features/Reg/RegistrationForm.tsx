@@ -1,6 +1,6 @@
 import React, { useState, type ChangeEvent, type FormEvent } from "react";
-import MyInput from "../../../entities/ui/input-ui";
-import { usePost } from "../../hooks/usePost";
+import { usePost } from "../../shared/hooks/usePost";
+import MyInput from "../../shared/ui/input-ui";
 
 interface RegistrationFormProps {
   onRegisterSuccess: () => void;
@@ -40,7 +40,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({
   const validate = (): Errors => {
     const newErrors: Errors = {};
     if (!formData.username.trim()) newErrors.username = "Name is required";
-    if (!formData.email.includes("@")) newErrors.email = "Incorrect email format";
+    if (!formData.email.includes("@"))
+      newErrors.email = "Incorrect email format";
     if (formData.password.length < 6) newErrors.password = "Min 6 characters";
     return newErrors;
   };

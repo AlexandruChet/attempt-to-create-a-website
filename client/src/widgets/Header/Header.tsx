@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Navbar from "../../entities/ui/burger-menu-ui";
+import Navbar from "../../shared/ui/burger-menu-ui";
 import logoIcon from "../../shared/img/logo.svg";
 import "../../app/styles/header.css";
 import { navLinks } from "../DATES/navigation";

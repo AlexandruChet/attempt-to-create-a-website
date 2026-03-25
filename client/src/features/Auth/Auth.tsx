@@ -1,5 +1,5 @@
 import React, { useState, type ChangeEvent, type FormEvent } from "react";
-import MyInput from "../../../entities/ui/input-ui";
+import MyInput from "../../shared/ui/input-ui";
 
 
 interface AuthProps {
