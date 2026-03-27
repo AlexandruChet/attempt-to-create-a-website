@@ -5,14 +5,18 @@ const MainComponent = () => {
   const [time, setTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const intervalRef = useRef<number | null>(null);
+  const [userInput, setUserInput] = useState<string>("");
 
   const [randomText] = useState(() => {
     const index = Math.floor(Math.random() * TypingText.length);
     return TypingText[index];
   });
 
-  const [userInput, setUserInput] = useState<string>("");
+  const partToCompare = randomText.slice(0, userInput.length);
+  const isError = userInput !== partToCompare;
   const isFinished = userInput.length === randomText.length;
+  let auditMessage = "Start typing";
+  if (userInput.length > 0) auditMessage = isError ? "Error found!!!!!" : "OK";
 
   useEffect(() => {
     if (isRunning) {
@@ -39,38 +43,27 @@ const MainComponent = () => {
   };
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const val = e.target.value;
-
-    if (val.length <= randomText.length) {
-      setUserInput(val);
-
-      if (val.length === 1 && !isRunning) {
-        setIsRunning(true);
-      }
-
-      if (val.length === randomText.length) {
-        setIsRunning(false);
-      }
-    }
+    const value = e.target.value;
+    if (value.length <= randomText.length) setUserInput(value);
+    if (value.length === 1 && !isRunning) setIsRunning(true);
+    if (value.length === randomText.length) setIsRunning(false);
   };
 
   return (
     <div>
       <h3>Check your speed</h3>
       <div>Timer: {(time / 1000).toFixed(1)} s.</div>
-
+      <div>Status: {auditMessage}</div>
       <div>
         <h3>{randomText}</h3>
       </div>
-
       <div>
         <button onClick={reset}>Reset</button>
       </div>
-
       <textarea
         value={userInput}
         onChange={handleChange}
-        placeholder="Start typing here! (Please dont use Enter)"
+        placeholder="Start typing here (Please dont use Enter!!!)"
         disabled={isFinished}
         rows={5}
         cols={50}
